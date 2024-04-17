@@ -2,7 +2,6 @@
 
 # Things to do:
 # Make mapping of .ipynb to title + append it to file
-# import { CTAButtons } from '@site/src/components/CTAButtons/CTAButtons.tsx';
 
 
 import re
@@ -22,7 +21,7 @@ def extract_href_links_from_markdown(markdown_text):
 def format_CTA_button(href_links):
     # Find index where colab URL link is
     indices = [index for (index, item) in enumerate(href_links) if "colab" in item]
-
+    # Only get the first URL link
     if len(indices) == 1:
         cta_button = "<CTAButtons colab_button='"+ href_links[0] + "'/>"
     
