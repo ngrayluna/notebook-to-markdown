@@ -2,12 +2,14 @@
 
 # Things to do:
 # Make mapping of .ipynb to title + append it to file
-#
+# import { CTAButtons } from '@site/src/components/CTAButtons/CTAButtons.tsx';
 
 
 import re
 import argparse
 
+def add_import_statement():
+    return "import { CTAButtons } from '@site/src/components/CTAButtons/CTAButtons.tsx'\n\n"
 
 def extract_href_links_from_markdown(markdown_text):
     # Define the regex pattern to match href attribute value in anchor tags
@@ -41,9 +43,6 @@ def remove_patterns_from_markdown(markdown_text):
 
 
 def main(args):
-    
-
-    #markdown_file = args.file
 
     # Read the content of the input Markdown file
     with open(args.file, 'r') as file:
@@ -59,6 +58,7 @@ def main(args):
 
     # Write the modified Markdown content to the output file
     with open(args.file, 'w') as file:
+        file.write(add_import_statement())
         file.write(colab_button_markdown)
         #file.write(add_title(title))  # To do
         file.write(cleaned_markdown)
