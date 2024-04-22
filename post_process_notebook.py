@@ -35,7 +35,6 @@ title_mapping = {
 def rename_markdown_file(filename, title_names):
     "Rename notebook file."
     # Check if .ipynb name exists in our mapping
-
     base_name = os.path.basename(filename).split('.')[0]
     if base_name in title_names:
         new_filename = title_names[base_name]
