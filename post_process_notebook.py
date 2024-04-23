@@ -4,45 +4,6 @@ import os
 import re
 import argparse
 
-# broken_tmp ={
-#     "Credit_Scorecards_with_XGBoost_and_W&B" : "xgboost",
-#     "Simple_LightGBM_Integration": "lightgbm",
-# }
-
-# no_longer = {
-#         "RayTune_with_wandb": "",
-#         "Weights_&_Biases_with_fastai": "",
-#         "WandB_Prompts_Quickstart":"",    
-# }
-
-title_mapping = {
-    "Intro_to_Weights_&_Biases": "experiments",
-    "Pipeline_Versioning_with_W&B_Artifacts": "artifacts",
-    "Model_Registry_E2E": "models",
-    "W&B_Tables_Quickstart": "tables",
-    "Organizing_Hyperparameter_Sweeps_in_PyTorch_with_W&B": "sweeps",
-    "Using_W&B_Sweeps_with_XGBoost": "xgboost_sweeps",
-    "Simple_PyTorch_Integration": "pytorch",
-    "Huggingface_wandb": "huggingface",
-    "Hyperparameter_Optimization_in_TensorFlow_using_W&B_Sweeps": "tensorflow_sweeps",
-    "Image_Classification_using_PyTorch_Lightning": "lightning",
-    "Simple_TensorFlow_Integration": "tensorflow",
-    "Use_WandbMetricLogger_in_your_Keras_workflow": "keras",
-    "Use_WandbEvalCallback_in_your_Keras_workflow": "keras_table",
-    "Use_WandbModelCheckpoint_in_your_Keras_workflow": "keras_models",
-}
-
-def rename_markdown_file(filename, title_names):
-    "Rename notebook file."
-    # Check if .ipynb name exists in our mapping
-    base_name = os.path.basename(filename).split('.')[0]
-    if base_name in title_names:
-        new_filename = title_names[base_name]
-
-        # Rename file
-        print(f"Renaming notebook from {filename} to {new_filename}.md")
-        os.rename(filename, new_filename+".md")
-
 
 def add_import_statement():
     # Add CTA import statement
@@ -62,17 +23,20 @@ def format_CTA_button(href_links):
     # Only get the first URL link
     if len(indices) == 1:
         cta_button = "<CTAButtons colab_button='"+ href_links[0] + "'/>"
-    
-    return cta_button
+        return cta_button
+    else:
+        return ''
 
 def remove_patterns_from_markdown(markdown_text):
     # Define the regex patterns to match <img> tags and the specified comment
-    img_pattern = r'<img[^>]+>'    
-    comment_pattern = r'<!--- @wandbcode{intro-colab} -->'
+    img_pattern = r'<img[^>]+>'
+    div_pattern = r'<div\b[^>]*>.*?</div>'
+    comment_pattern = r'<!---\s*@wandbcode\{.*?\}\s*-->'
     empty_a_tag_pattern=r'<a\s+[^>]*\s*href\s*=\s*"[^"]*"\s*[^>]*>.*?</a>'
 
     # Use re.sub() to replace all occurrences of the patterns with an empty string
     cleaned_text = re.sub(img_pattern, '', markdown_text)
+    cleaned_text = re.sub(div_pattern, '', cleaned_text)
     cleaned_text = re.sub(comment_pattern, '', cleaned_text)
     cleaned_text = re.sub(empty_a_tag_pattern, '', cleaned_text)
 
@@ -100,10 +64,6 @@ def main(args):
         file.write(colab_button_markdown)
         #file.write(add_title(title))  # To do
         file.write(cleaned_markdown)
-
-    print("Checking if we need to rename notebook")
-    # Rename notebook
-    rename_markdown_file(args.file, title_mapping)
 
     return
 
