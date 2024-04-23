@@ -24,10 +24,11 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# Run Jupyter nbconvert to convert the notebook to Markdown
+# Get the markdown file name created from the previous step
 output_md="${filename%.ipynb}.md"  
 
+# Post process markdown
 python post_process_notebook.py "$output_md"
 
-# Run the Python script with the Markdown filename
+# Check if markdown file needs to be renamed 
 python rename_notebook.py "$output_md"

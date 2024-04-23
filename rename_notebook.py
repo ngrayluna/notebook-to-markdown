@@ -3,11 +3,6 @@
 import os
 import argparse
 
-# broken_tmp ={
-#     "Credit_Scorecards_with_XGBoost_and_W&B" : "xgboost",
-#     "Simple_LightGBM_Integration": "lightgbm",
-# }
-
 # no_longer = {
 #         "RayTune_with_wandb": "",
 #         "Weights_&_Biases_with_fastai": "",
