@@ -24,6 +24,7 @@ title_mapping = {
     "Use_WandbMetricLogger_in_your_Keras_workflow": "keras",
     "Use_WandbEvalCallback_in_your_Keras_workflow": "keras_table",
     "Use_WandbModelCheckpoint_in_your_Keras_workflow": "keras_models",
+    "Workspace_tutorial": "workspaces"
 }
 
 def rename_markdown_file(filename, title_names):
