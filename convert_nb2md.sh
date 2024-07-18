@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Usage: 
+# >> bash convert_nb2md.sh Organizing_Hyperparameter_Sweeps_in_PyTorch_with_W\&B.ipynb
+
 # Check if a filename is provided as argument
 if [ $# -ne 1 ]; then
     echo "Usage: $0 <filename>"

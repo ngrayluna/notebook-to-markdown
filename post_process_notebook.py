@@ -22,7 +22,7 @@ def format_CTA_button(href_links):
     indices = [index for (index, item) in enumerate(href_links) if "colab" in item]
     # Only get the first URL link
     if len(indices) == 1:
-        cta_button = "<CTAButtons colab_button='"+ href_links[0] + "'/>"
+        cta_button = "<CTAButtons colabLink='"+ href_links[0] + "'/>"
         return cta_button
     else:
         return ''
@@ -69,9 +69,7 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
+    # parser.add_argument("file", nargs="*", help="markdown file to process")
     parser.add_argument("file", help="markdown file to process")
     args = parser.parse_args()
-
-    print("Formatting markdown...")
     main(args)
-    print("Formatting done!")
