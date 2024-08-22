@@ -10,6 +10,10 @@ import argparse
 
 markdown_titles = {
     "Organizing_Hyperparameter_Sweeps_in_PyTorch_with_W&B": "Tune Hyperparameters",
+    "Intro_to_Weights_&_Biases":"Track experiments",
+    "W&B_Tables_Quickstart": "View and analyze model predictions during training",
+    "Pipeline_Versioning_with_W&B_Artifacts": "Track models and datasets"
+
 }
 
 
