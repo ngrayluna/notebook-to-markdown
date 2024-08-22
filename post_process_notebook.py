@@ -22,6 +22,9 @@ def add_title(filename, page_titles):
 
     if base_name in markdown_titles:
         return f"# {page_titles[base_name]}\n\n"
+    else:
+        print("Missing markdown title...setting title to 'W&B Tutorial' " )
+        return f"# W&B Tutorial\n\n"
 
 
 
