@@ -8,6 +8,18 @@ import os
 import re
 import argparse
 
+markdown_titles = {
+    "Organizing_Hyperparameter_Sweeps_in_PyTorch_with_W&B": "Tune Hyperparameters",
+}
+
+
+def add_title(filename, page_titles):
+    base_name = os.path.basename(filename).split('.')[0]
+
+    if base_name in markdown_titles:
+        return f"# {page_titles[base_name]}\n\n"
+
+
 
 def add_import_statement():
     # Add CTA import statement
@@ -56,6 +68,9 @@ def main(args):
     # Extract href links from the Markdown content
     href_links = extract_href_links_from_markdown(markdown_text)
 
+    # Create title of markdown file
+    page_title = add_title(args.file, markdown_titles)
+
     # Create CTA button format
     colab_button_markdown = format_CTA_button(href_links)
 
@@ -65,8 +80,8 @@ def main(args):
     # Write the modified Markdown content to the output file
     with open(args.file, 'w') as file:
         file.write(add_import_statement())
+        file.write(page_title)  # To do
         file.write(colab_button_markdown)
-        #file.write(add_title(title))  # To do
         file.write(cleaned_markdown)
 
     return
